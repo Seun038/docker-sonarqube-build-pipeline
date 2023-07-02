@@ -7,7 +7,7 @@ pipeline {
     agent any
 
     environment {
-        registry = "757750585556.dkr.ecr.ca-central-1.amazonaws.com/sonarqube-app"
+        registry = "693120310247.dkr.ecr.us-east-1.amazonaws.com/docker-sonar-build"
     }
     stages {
         stage('Checkout') {
@@ -28,8 +28,8 @@ pipeline {
         stage ("Push to ECR") {
             steps {
                 script {
-                    sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 757750585556.dkr.ecr.us-east-1.amazonaws.com'
-                    sh 'docker push 757750585556.dkr.ecr.ca-central-1.amazonaws.com/sonarqube-app:$BUILD_NUMBER'
+                    sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 693120310247.dkr.ecr.us-east-1.amazonaws.com'
+                    sh 'docker push 693120310247.dkr.ecr.us-east-1.amazonaws.com/docker-sonar-build:$BUILD_NUMBER'
                     
                 }
             }
